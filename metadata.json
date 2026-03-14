@@ -1,5 +1,5 @@
 {
-  "name": "Presentation PDF Compressor",
-  "description": "A tool to significantly reduce the size of presentation PDFs by rasterizing slides, with an option to merge them into a single file.",
+  "name": "Ultimate PDF Suite",
+  "description": "A powerful, browser-based toolkit for PDF compression, OCR text extraction, merging, and PDF-to-image conversion.",
   "requestFramePermissions": []
 }

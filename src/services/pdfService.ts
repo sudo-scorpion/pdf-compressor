@@ -39,7 +39,11 @@ export async function processPdfs(files: File[], options: CompressionOptions): P
         canvas.height = viewport.height;
         canvas.width = viewport.width;
         
-        await page.render({ canvasContext: context!, viewport }).promise;
+        await page.render({ 
+          canvasContext: context!, 
+          viewport,
+          canvas: canvas
+        }).promise;
         
         const imgData = canvas.toDataURL('image/jpeg', quality);
         const imgBytes = await fetch(imgData).then(res => res.arrayBuffer());
@@ -59,7 +63,7 @@ export async function processPdfs(files: File[], options: CompressionOptions): P
     }
     
     const mergedBytes = await mergedPdf.save();
-    return [{ blob: new Blob([mergedBytes], { type: 'application/pdf' }), name: 'merged_compressed.pdf' }];
+    return [{ blob: new Blob([mergedBytes as any], { type: 'application/pdf' }), name: 'merged_compressed.pdf' }];
   } else {
     const results = [];
     for (const { file, pdf } of pdfDocs) {
@@ -73,7 +77,11 @@ export async function processPdfs(files: File[], options: CompressionOptions): P
         canvas.height = viewport.height;
         canvas.width = viewport.width;
         
-        await page.render({ canvasContext: context!, viewport }).promise;
+        await page.render({ 
+          canvasContext: context!, 
+          viewport,
+          canvas: canvas
+        }).promise;
         
         const imgData = canvas.toDataURL('image/jpeg', quality);
         const imgBytes = await fetch(imgData).then(res => res.arrayBuffer());
@@ -91,7 +99,7 @@ export async function processPdfs(files: File[], options: CompressionOptions): P
         onProgress((pagesProcessed / totalPages) * 100, `Processing ${file.name} (Page ${i}/${pdf.numPages})`);
       }
       const bytes = await newPdf.save();
-      results.push({ blob: new Blob([bytes], { type: 'application/pdf' }), name: `compressed_${file.name}` });
+      results.push({ blob: new Blob([bytes as any], { type: 'application/pdf' }), name: `compressed_${file.name}` });
     }
     return results;
   }

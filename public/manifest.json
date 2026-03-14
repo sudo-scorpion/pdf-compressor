@@ -1,0 +1,16 @@
+{
+  "name": "Ultimate PDF Suite",
+  "short_name": "PDF Suite",
+  "description": "Privacy-focused browser-based PDF toolkit.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
